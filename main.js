@@ -48,8 +48,6 @@ function addTask(e){
   // Clear input
   taskInput.value = '';
 
-  
-
   e.preventDefault();
 } 
 
@@ -78,13 +76,13 @@ function filterTasks(e){
 
   document.querySelectorAll('.collection-item').forEach(
     (task)=>{
-    const item = task.firstChild.textContent;
-    if(item.toLowerCase().indexOf(text) !== -1){
-      task.style.display = 'block';
-    } else {
-      task.style.display = 'none';
+        const item = task.firstChild.textContent.toLowerCase();
+        
+        if(item.toLowerCase().indexOf(text) !== -1){
+          task.style.display = 'block';
+        } else{
+          task.style.display = 'none';
+        }
     }
-  })
-
-
+  )
 }
