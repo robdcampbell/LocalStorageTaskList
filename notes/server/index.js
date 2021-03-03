@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const pool = require("./db.js");
 
 // Middleware
 // will allow localhost 3000 and 5000 to interact with each other.
