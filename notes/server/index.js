@@ -13,18 +13,29 @@ app.use(express.json());
 // ROUTES
 // Get all todos
 
+app.get("/todos", async (req, res) => {
+  try {
+    const allTodos = await pool.query("SELECT * FROM todo");
+    res.json(allTodos);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 // Get a todo
 
 // Create a todo
 app.post("/todos", async (req, res) => {
   try {
+    // desctucting from the json thats being sent from the body (we're pulling out the "description")
     const { description } = req.body;
     const newTodo = await pool.query(
-      "INSERT INTO todo (description) VALUES ($1)",
+      // "$1" is a variable, which is set by the next argument array (in this case [description])
+      "INSERT INTO todo (description) VALUES ($1) RETURNING *",
       [description]
     );
 
-    res.json(newTodo);
+    res.json(newTodo.rows[0]);
   } catch (err) {
     console.log(err.message);
   }
