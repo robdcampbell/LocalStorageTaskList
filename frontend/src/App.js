@@ -1,9 +1,10 @@
 import "./App.css";
+import InputTodo from "./components/InputTodo";
 
 function App() {
   return (
     <div className="App">
-      <h1>fullStack todo - Pern</h1>
+      <InputTodo />
     </div>
   );
 }
