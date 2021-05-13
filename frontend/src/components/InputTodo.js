@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const InputTodo = () => {
-  const [description, setDescription] = useState("");
+  //const [description, setDescription] = useState("");
+  const description = useRef();
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
     try {
-      const body = { description };
+      const body = { description: description.current.value };
       const response = await fetch("http://localhost:5000/todos", {
         method: "POST",
         headers: {
@@ -16,6 +17,7 @@ const InputTodo = () => {
         body: JSON.stringify(body),
       });
       console.log(response);
+      description.current.value = "";
     } catch (error) {
       console.error(error.message);
     }
@@ -28,8 +30,9 @@ const InputTodo = () => {
         <input
           type="text"
           placeholder="add todo"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          // value={description}
+          // onChange={(e) => setDescription(e.target.value)}
+          ref={description}
         />
         <button>Add</button>
       </form>
