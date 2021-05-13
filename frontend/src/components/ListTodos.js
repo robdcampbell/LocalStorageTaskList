@@ -24,6 +24,18 @@ const ListTodos = () => {
     }
   };
 
+  const deleteTodo = async (e) => {
+    const id = e.target.parentElement.id;
+
+    const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    console.log("Deleted!");
+  };
+
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -35,8 +47,9 @@ const ListTodos = () => {
         <h3>Nothing to do yet!</h3>
       ) : (
         todos.map((todo) => (
-          <div key={todo.todo_id} id={todo.todo_id}>
+          <div className="todo_card" key={todo.todo_id} id={todo.todo_id}>
             <h4>{todo.description}</h4>
+            <button onClick={(e) => deleteTodo(e)}>X</button>
           </div>
         ))
       )}

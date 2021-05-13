@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.todo_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: #c0c0c0 solid 1px;
+  padding-bottom: 1rem;
+}
+.todo_card > button {
+  margin-left: 2rem;
+  height: fit-content;
+}
