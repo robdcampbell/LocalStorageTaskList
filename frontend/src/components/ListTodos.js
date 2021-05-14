@@ -25,7 +25,7 @@ const ListTodos = () => {
   };
 
   const deleteTodo = async (e) => {
-    const id = e.target.parentElement.id;
+    const id = e.target.parentElement.parentElement.id;
 
     const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
       method: "DELETE",
@@ -41,17 +41,34 @@ const ListTodos = () => {
   }, []);
 
   return (
-    <div>
-      <h2>The list</h2>
+    <div className="todo_list">
       {!todos ? (
         <h3>Nothing to do yet!</h3>
       ) : (
-        todos.map((todo) => (
-          <div className="todo_card" key={todo.todo_id} id={todo.todo_id}>
-            <h4>{todo.description}</h4>
-            <button onClick={(e) => deleteTodo(e)}>X</button>
-          </div>
-        ))
+        <>
+          <table className="todo_table">
+            <thead>
+              <tr className="todo_row">
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {todos.map((todo) => (
+                <tr className="todo_card" key={todo.todo_id} id={todo.todo_id}>
+                  <td>{todo.description}</td>
+                  <td>
+                    <button>edit</button>
+                  </td>
+                  <td>
+                    <button onClick={(e) => deleteTodo(e)}>X</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
       )}
     </div>
   );

@@ -37,14 +37,26 @@
   }
 }
 
-.todo_card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.todo_list {
+  margin-top: 2rem;
+}
+
+.todo_table {
+  margin: 0 auto;
+  padding: 1rem;
+  border-collapse: collapse;
+}
+tr {
+  /* background-color: red; */
   border-bottom: #c0c0c0 solid 1px;
+}
+
+.todo_row > th {
   padding-bottom: 1rem;
 }
-.todo_card > button {
-  margin-left: 2rem;
-  height: fit-content;
+
+.todo_card {
+}
+.todo_card > td {
+  padding: 1rem;
 }
