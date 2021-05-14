@@ -60,3 +60,64 @@ tr {
 .todo_card > td {
   padding: 1rem;
 }
+
+/* MODAL */
+/* The Modal (background) */
+.edit__modal {
+  /* display: none; */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  /* Full width */
+  width: 50%;
+  /* Full height */
+  /* height: 100%;  */
+  /* color: white; */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.3); /* Fallback color */
+  border-radius: 0.25rem;
+}
+
+/* Modal Content/Box */
+.modal__content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 2rem 1rem;
+  /* margin: 15% auto; 15% from the top and centered */
+  padding: 2rem;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal__controls {
+  padding-top: 1rem;
+  justify-content: flex-end;
+  display: flex;
+}
+.confirm__edit {
+  cursor: pointer;
+  margin-left: 1rem;
+  border: #c0c0c0 solid 1px;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+}
+
+/* The Close Button */
+.close__modal {
+  cursor: pointer;
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

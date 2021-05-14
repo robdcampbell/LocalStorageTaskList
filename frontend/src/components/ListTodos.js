@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import EditTodo from "./EditTodo";
 
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [activeTodo, setActiveTodo] = useState({});
 
   const fetchTodos = async () => {
     try {
@@ -13,27 +15,28 @@ const ListTodos = () => {
         },
       });
       const allTodos = await data.json();
-      console.log(allTodos);
+      // console.log(allTodos);
 
       setTodos(allTodos);
-
-      // USING AXIOS
-      // const allTodos = await axios.get("http://localhost:5000/todos");
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  const deleteTodo = async (e) => {
-    const id = e.target.parentElement.parentElement.id;
-
-    const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
-    console.log("Deleted!");
+  const deleteTodo = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:5000/todos/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      console.log(res);
+      // fetchTodos();
+      setTodos(todos.filter((todo) => todo.todo_id !== id));
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   useEffect(() => {
@@ -59,10 +62,25 @@ const ListTodos = () => {
                 <tr className="todo_card" key={todo.todo_id} id={todo.todo_id}>
                   <td>{todo.description}</td>
                   <td>
-                    <button>edit</button>
+                    <button
+                      onClick={(e) => {
+                        console.log(todo.todo_id);
+                        setShowModal(true);
+                        setActiveTodo(todo);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    {showModal && (
+                      <EditTodo
+                        todo={activeTodo}
+                        showModal={showModal}
+                        setShowModal={setShowModal}
+                      />
+                    )}
                   </td>
                   <td>
-                    <button onClick={(e) => deleteTodo(e)}>X</button>
+                    <button onClick={(e) => deleteTodo(todo.todo_id)}>X</button>
                   </td>
                 </tr>
               ))}
