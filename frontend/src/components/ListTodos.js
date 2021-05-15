@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EditTodo from "./EditTodo";
 
-const ListTodos = () => {
+const ListTodos = ({ trip, setTrip }) => {
   const [todos, setTodos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [activeTodo, setActiveTodo] = useState({});
@@ -33,7 +33,8 @@ const ListTodos = () => {
       });
       console.log(res);
       // fetchTodos();
-      setTodos(todos.filter((todo) => todo.todo_id !== id));
+      // setTodos(todos.filter((todo) => todo.todo_id !== id));
+      setTrip((prev) => (prev += 1));
     } catch (error) {
       console.error(error.message);
     }
@@ -41,7 +42,7 @@ const ListTodos = () => {
 
   useEffect(() => {
     fetchTodos();
-  }, []);
+  }, [trip]);
 
   return (
     <div className="todo_list">
@@ -61,7 +62,7 @@ const ListTodos = () => {
               {todos.map((todo) => (
                 <tr className="todo_card" key={todo.todo_id} id={todo.todo_id}>
                   <td>{todo.description}</td>
-                  <td>
+                  <td className="todo__control">
                     <button
                       onClick={(e) => {
                         console.log(todo.todo_id);
@@ -79,7 +80,7 @@ const ListTodos = () => {
                       />
                     )}
                   </td>
-                  <td>
+                  <td className="todo__control">
                     <button onClick={(e) => deleteTodo(todo.todo_id)}>X</button>
                   </td>
                 </tr>

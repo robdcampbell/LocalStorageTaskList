@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-const InputTodo = () => {
+const InputTodo = ({ trip, setTrip }) => {
   //const [description, setDescription] = useState("");
   const description = useRef();
 
@@ -18,15 +18,16 @@ const InputTodo = () => {
       });
       console.log(response);
       description.current.value = "";
+      setTrip((prev) => (prev += 1));
     } catch (error) {
       console.error(error.message);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => onSubmitForm(e)}>
-        <h1>Input Todo</h1>
+    <form className="todo__form" onSubmit={(e) => onSubmitForm(e)}>
+      <h1>The ole' todo list</h1>
+      <div className="add__controls">
         <input
           type="text"
           placeholder="add todo"
@@ -35,8 +36,8 @@ const InputTodo = () => {
           ref={description}
         />
         <button>Add</button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 

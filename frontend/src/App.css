@@ -1,64 +1,90 @@
-.App {
-  text-align: center;
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* GLOBAL */
+
+button {
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/*  */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App {
+  margin-top: 1rem;
+  width: 50%;
+  border: #c0c0c0 solid 1px;
+  border-radius: 0.25rem;
 }
 
 .todo_list {
   margin-top: 2rem;
+  width: 100%;
+}
+
+.todo__form {
+  margin-top: 1rem;
+}
+.todo__form > h1 {
+  text-align: center;
+  margin: 1rem;
+}
+.add__controls {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.add__controls > * {
+  width: 100%;
+}
+.add__controls > input {
+  padding: 0.5rem;
+}
+.add__controls > button {
 }
 
 .todo_table {
+  width: 90%;
   margin: 0 auto;
   padding: 1rem;
   border-collapse: collapse;
 }
 tr {
-  /* background-color: red; */
   border-bottom: #c0c0c0 solid 1px;
+}
+tr:last-of-type {
+  border: none;
 }
 
 .todo_row > th {
   padding-bottom: 1rem;
+  text-align: left;
 }
 
-.todo_card {
-}
 .todo_card > td {
-  padding: 1rem;
+  padding: 1rem 0;
+  /* text-align: left; */
+}
+.todo_card > td:first-of-type {
+  text-align: left;
+}
+.todo__control {
+  /* background-color: red; */
+}
+.todo__control > button {
+  padding: 0.25rem;
+  margin-left: 0.25rem;
+  border: #888 solid 1px;
+  border-radius: 0.25rem;
 }
 
 /* MODAL */
