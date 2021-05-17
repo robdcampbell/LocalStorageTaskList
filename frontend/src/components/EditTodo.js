@@ -3,6 +3,19 @@ import React, { useState } from "react";
 const EditTodo = ({ showModal, setShowModal, todo }) => {
   const [description, setDescription] = useState(todo.description);
 
+  const updateDescription = async () => {
+    console.log(`${todo.todo_id} TEST`);
+
+    const res = await fetch(`http://localhost:5000/todos/${todo.todo_id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(description),
+    });
+    await console.log(res);
+  };
+
   return (
     // <>
     //   <div>
@@ -26,7 +39,10 @@ const EditTodo = ({ showModal, setShowModal, todo }) => {
           <p>
             <span
               className="confirm__edit"
-              onClick={(e) => setShowModal(false)}
+              onClick={(e) => {
+                updateDescription();
+                setShowModal(false);
+              }}
             >
               Confirm Edit
             </span>

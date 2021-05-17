@@ -46,8 +46,8 @@ const ListTodos = ({ trip, setTrip }) => {
 
   return (
     <div className="todo_list">
-      {!todos ? (
-        <h3>Nothing to do yet!</h3>
+      {todos.length === 0 ? (
+        <h1>Add some tasks to the list!</h1>
       ) : (
         <>
           <table className="todo_table">

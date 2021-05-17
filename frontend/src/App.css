@@ -30,6 +30,11 @@ button {
   width: 100%;
 }
 
+.todo_list > h1 {
+  text-align: center;
+  margin: 2rem;
+}
+
 .todo__form {
   margin-top: 1rem;
 }
