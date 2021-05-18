@@ -77,6 +77,8 @@ const ListTodos = ({ trip, setTrip }) => {
                         todo={activeTodo}
                         showModal={showModal}
                         setShowModal={setShowModal}
+                        trip={trip}
+                        setTrip={setTrip}
                       />
                     )}
                   </td>

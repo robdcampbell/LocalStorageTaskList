@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 
-const EditTodo = ({ showModal, setShowModal, todo }) => {
+const EditTodo = ({ showModal, setShowModal, todo, trip, setTrip }) => {
   const [description, setDescription] = useState(todo.description);
 
   const updateDescription = async () => {
-    console.log(`${todo.todo_id} TEST`);
+    console.log(`${description} TEST`);
+
+    const body = { description };
 
     const res = await fetch(`http://localhost:5000/todos/${todo.todo_id}`, {
       method: "PUT",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(description),
+      body: JSON.stringify(body),
     });
-    await console.log(res);
+    // await console.log(res);
+    setTrip((prev) => (prev += 1));
   };
 
   return (
