@@ -12,7 +12,7 @@ app.use(cors()); // allows cross domain resource sharing - proxing between ports
 
 // Get all todos
 app.get("/todos", async (req, res) => {
-  const allTodos = await pool.query("SELECT * FROM todo ORDER BY todo_id");
+  const allTodos = await pool.query("SELECT * FROM todo ORDER BY todo_id ASC");
   res.status(200).json(allTodos.rows);
 });
 
