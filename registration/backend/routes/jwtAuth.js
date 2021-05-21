@@ -22,9 +22,15 @@ router.post("/register", async (req, res) => {
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
 
-    const bcryptPassword = bcrypt.hash(password, salt);
+    const bcryptPassword = await bcrypt.hash(password, salt);
 
     // 4). Enter the new user into Database
+
+    const newUser = await pool.query(
+      `INSERT INTO users(user_name, user_email, user_password) VALUES($1,$2, $3) RETURNING *`,
+      [name, email, bcryptPassword]
+    );
+    res.status(200).json(newUser.rows[0]);
 
     // 5). Generating our JWT token
   } catch (error) {
