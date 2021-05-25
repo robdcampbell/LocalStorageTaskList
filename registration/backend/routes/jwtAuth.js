@@ -2,10 +2,11 @@ const router = require("express").Router();
 const pool = require("../config/db.js");
 const bcrypt = require("bcrypt");
 const jwtGenerator = require("../utils/jwtGenerator");
+const validInfo = require("../middleware/validInfo");
 
 // adding user to database
 // REGISTER ROUTE
-router.post("/register", async (req, res) => {
+router.post("/register", validInfo, async (req, res) => {
   try {
     // 1). destructure the req.body {email, name, password}
 
@@ -45,7 +46,7 @@ router.post("/register", async (req, res) => {
 });
 
 // LOGIN ROUTE
-router.post("/login", async (req, res) => {
+router.post("/login", validInfo, async (req, res) => {
   try {
     // 1. Destructure req.body
 
