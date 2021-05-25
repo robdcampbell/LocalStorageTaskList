@@ -11,6 +11,8 @@ app.use(cors());
 
 // Routes
 app.use("/auth", require("./routes/jwtAuth.js"));
+// Dashboard
+app.use("/dashboard", require("./routes/dashboard"));
 
 // Simple Test Route:
 app.get("/", (req, res) => {
