@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -10,6 +11,12 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const setAuth = (boolean) => {
+    setIsAuthenticated(boolean);
+  };
+
   return (
     <Router>
       <div className="App">
@@ -17,13 +24,35 @@ function App() {
           <Route
             exact
             path="/dashboard"
-            render={(props) => <Dashboard {...props} />}
+            render={(props) =>
+              isAuthenticated ? (
+                <Dashboard {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
           />
-          <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route
+            exact
+            path="/login"
+            render={(props) =>
+              !isAuthenticated ? (
+                <Login {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            }
+          />
           <Route
             exact
             path="/register"
-            render={(props) => <Register {...props} />}
+            render={(props) =>
+              !isAuthenticated ? (
+                <Register {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
           />
         </Switch>
       </div>
