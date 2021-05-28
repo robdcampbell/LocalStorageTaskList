@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+/*  */
+/*  */
+/*  */
+
+/* BEGIN */
+.register__form {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.register__form > * {
+  margin-bottom: 0.25rem;
+}
+.register__form > input {
+  cursor: text;
+  background-color: rgba(205, 230, 240, 0.5);
+  border: #e6e6e6 solid 1px;
+  border-radius: 2px;
+  padding: 0.5rem;
+}
+.register__form > input[name="name"] {
+  background: none;
+}
+.register__form > button {
+  cursor: pointer;
+  border: #e6e6e6 solid 1px;
+  background-color: #c5f1b4;
+  border-radius: 2px;
+  padding: 0.5rem;
+}

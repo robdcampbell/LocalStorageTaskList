@@ -1,9 +1,10 @@
 import React from "react";
 
-const Dashboard = () => {
+const Dashboard = ({ setAuth }) => {
   return (
     <>
       <h1>Dashboard</h1>
+      <button onClick={(e) => setAuth(false)}>Log Out</button>
     </>
   );
 };
