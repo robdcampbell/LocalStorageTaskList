@@ -25,7 +25,10 @@ const Register = () => {
         body: JSON.stringify(body),
       });
       const parsedResponse = await response.json();
-      console.log(parsedResponse);
+      // console.log(parsedResponse);
+
+      // SET USER TOKEN TO LOCAL STORAGE
+      locati;
     } catch (error) {
       console.error(error.message);
     }
