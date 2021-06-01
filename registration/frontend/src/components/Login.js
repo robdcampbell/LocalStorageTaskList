@@ -5,10 +5,9 @@ const Login = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
-    name: "",
   });
 
-  const { email, password, name } = inputs;
+  const { email, password } = inputs;
 
   const changeInput = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -17,7 +16,7 @@ const Login = ({ setAuth }) => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
-    const body = { email, password, name };
+    const body = { email, password };
 
     try {
       const response = await fetch("http://localhost:5000/auth/login", {
@@ -35,7 +34,7 @@ const Login = ({ setAuth }) => {
   return (
     <>
       <h1>Login</h1>
-      <button onClick={(e) => setAuth(true)}>Authenticate</button>
+      {/* <button onClick={(e) => setAuth(true)}>Authenticate</button> */}
       <form className="register__form" onSubmit={(e) => onSubmitForm(e)}>
         <input
           required
@@ -52,13 +51,9 @@ const Login = ({ setAuth }) => {
           placeholder="password"
           onChange={(e) => changeInput(e)}
         />
-        <input
-          type="text"
-          name="name"
-          placeholder="name"
-          onChange={(e) => changeInput(e)}
-        />
         <button>Submit</button>
+        <p>or:</p>
+        <Link to="/register">Create Account</Link>
       </form>
     </>
   );
