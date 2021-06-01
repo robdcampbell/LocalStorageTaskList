@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Login = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
@@ -25,7 +26,16 @@ const Login = ({ setAuth }) => {
         body: JSON.stringify(body),
       });
       const parsedResponse = await response.json();
-      console.log(parsedResponse);
+
+      if (parsedResponse.token) {
+        localStorage.setItem("token", parsedResponse.token);
+        // console.log(parsedResponse);
+        setAuth(true);
+        toast.success("Login Successfull");
+      } else {
+        setAuth(false);
+        toast.error(parsedResponse);
+      }
     } catch (error) {
       console.error(error.message);
     }
@@ -51,9 +61,9 @@ const Login = ({ setAuth }) => {
           placeholder="password"
           onChange={(e) => changeInput(e)}
         />
-        <button>Submit</button>
-        <p>or:</p>
-        <Link to="/register">Create Account</Link>
+        <button>Log In</button>
+        <p>Need an account?</p>
+        <Link to="/register">Register here</Link>
       </form>
     </>
   );

@@ -19,7 +19,7 @@ router.post("/register", validInfo, async (req, res) => {
     ]);
 
     if (user.rows.length !== 0) {
-      return res.status(401).send("User Already Exists!");
+      return res.status(401).json("User Already Exists!");
     }
 
     // 3). Bcrypt the users password
@@ -77,9 +77,9 @@ router.post("/login", validInfo, async (req, res) => {
 
     res.status(200).json({ token });
   } catch (error) {
-    console.error(error.message);
+    console.error(`${error.message}`);
 
-    res.status(500).send("Server error...");
+    res.status(500).json("Server error...");
   }
 });
 
@@ -88,7 +88,7 @@ router.get("/is-verify", authorization, async (req, res) => {
     res.json(true);
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Server error...");
+    res.status(500).json("Server error...");
   }
 });
 
