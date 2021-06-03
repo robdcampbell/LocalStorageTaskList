@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 
 const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
+  const [notes, setNotes] = useState([]);
 
   const getName = async () => {
     try {
@@ -12,7 +13,10 @@ const Dashboard = ({ setAuth }) => {
       });
 
       const parsedResponse = await response.json();
-      setName(parsedResponse.user_name);
+      console.log(parsedResponse);
+      //parsedResponse.forEach((item) => console.log(item.description));
+      setName(parsedResponse[0].user_name);
+      setNotes(parsedResponse);
     } catch (error) {
       console.error(error.message);
     }

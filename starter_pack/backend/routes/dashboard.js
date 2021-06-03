@@ -34,6 +34,24 @@ router.post("/todos", authorization, async (req, res) => {
 });
 
 // Update a todo
+router.put("/todos/:id", authorization, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+    const updateTodo = await pool.query(
+      "UPDATE todo SET description=($1) WHERE todo_id=($2) AND user_id =$3 RETURNING *",
+      [description, id, req.user.id]
+    );
+
+    if (updateTodo.rows.length === 0) {
+      return res.json("This todo is not yours!");
+    }
+
+    res.status(200).json("Todo was updated!");
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 // Delete a todo
 
