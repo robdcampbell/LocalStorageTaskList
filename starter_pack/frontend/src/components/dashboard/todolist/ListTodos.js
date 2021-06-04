@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import EditTodo from "./EditTodo";
 
-const ListTodos = () => {
+const ListTodos = ({ parsedData, trip, setTrip }) => {
+  // console.log(`1 ${parsedData}`);
+
   const [todos, setTodos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [activeTodo, setActiveTodo] = useState({});
@@ -12,40 +14,40 @@ const ListTodos = () => {
   // FIX - UPDATE "token" to jwt_token, throughout app
   myHeaders.append("token", localStorage.token);
 
-  const fetchTodos = async () => {
-    try {
-      const data = await fetch("http://localhost:5000/dashboard/", {
-        method: "GET",
-        headers: myHeaders,
-      });
-      const allTodos = await data.json();
-      console.log(allTodos);
+  // const fetchTodos = async () => {
+  //   try {
+  //     const data = await fetch("http://localhost:5000/dashboard/", {
+  //       method: "GET",
+  //       headers: myHeaders,
+  //     });
+  //     const allTodos = await data.json();
+  //     console.log(allTodos);
 
-      setTodos(allTodos);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+  //     setTodos(allTodos);
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
 
   const deleteTodo = async (id) => {
     try {
       const res = await fetch(`http://localhost:5000/dashboard/todos/${id}`, {
         method: "DELETE",
-        headers: {
-          "Content-type": "application/json",
-        },
+        headers: myHeaders,
       });
       console.log(res);
       // fetchTodos();
       // setTodos(todos.filter((todo) => todo.todo_id !== id));
+      setTrip(!trip);
     } catch (error) {
       console.error(error.message);
     }
   };
 
   useEffect(() => {
-    fetchTodos();
-  }, []);
+    // fetchTodos();
+    setTodos(parsedData);
+  }, [parsedData]);
 
   return (
     <div className="todo_list">
@@ -80,6 +82,8 @@ const ListTodos = () => {
                         todo={activeTodo}
                         showModal={showModal}
                         setShowModal={setShowModal}
+                        trip={trip}
+                        setTrip={setTrip}
                       />
                     )}
                   </td>

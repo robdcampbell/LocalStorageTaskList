@@ -5,6 +5,8 @@ import ListTodos from "./todolist/ListTodos";
 
 const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
+  const [parsedData, setParsedData] = useState([]);
+  const [trip, setTrip] = useState(false);
 
   const getProfile = async () => {
     try {
@@ -14,7 +16,8 @@ const Dashboard = ({ setAuth }) => {
       });
 
       const parsedResponse = await response.json();
-      // console.log(parsedResponse);
+      //console.log(parsedResponse);
+      setParsedData(parsedResponse);
       //parsedResponse.forEach((item) => console.log(item.description));
       setName(parsedResponse[0].user_name);
     } catch (error) {
@@ -31,7 +34,7 @@ const Dashboard = ({ setAuth }) => {
 
   useEffect(() => {
     getProfile();
-  }, []);
+  }, [trip]);
 
   return (
     <div className="dashboard">
@@ -40,8 +43,8 @@ const Dashboard = ({ setAuth }) => {
         <button onClick={(e) => logout(e)}>logout</button>
       </header>
 
-      <InputTodo />
-      <ListTodos />
+      <InputTodo trip={trip} setTrip={setTrip} />
+      <ListTodos parsedData={parsedData} trip={trip} setTrip={setTrip} />
     </div>
   );
 };

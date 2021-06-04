@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-const InputTodo = () => {
+const InputTodo = ({ trip, setTrip }) => {
   //const [description, setDescription] = useState("");
   const description = useRef();
 
@@ -24,6 +24,7 @@ const InputTodo = () => {
       const parsedResponse = await response.json();
       console.log(parsedResponse);
       description.current.value = "";
+      setTrip(!trip);
     } catch (error) {
       console.error(error.message);
     }

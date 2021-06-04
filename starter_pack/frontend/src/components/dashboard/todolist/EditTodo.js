@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 
-const EditTodo = ({ showModal, setShowModal, todo }) => {
+const EditTodo = ({ showModal, setShowModal, todo, trip, setTrip }) => {
   const [description, setDescription] = useState(todo.description);
 
+  const myHeaders = new Headers();
+  myHeaders.append("Content-type", "application/json");
+  myHeaders.append("token", localStorage.token);
+
   const updateDescription = async () => {
-    console.log(`${description} TEST`);
-
-    const body = { description };
-
-    const res = await fetch(
-      `http://localhost:5000/dashboard/todos/${todo.todo_id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }
-    );
+    // console.log(`${description} TEST`);
+    try {
+      const body = { description };
+      console.log(body);
+      const res = await fetch(
+        `http://localhost:5000/dashboard/todos/${todo.todo_id}`,
+        {
+          method: "PUT",
+          headers: myHeaders,
+          body: JSON.stringify(body),
+        }
+      );
+      setTrip(!trip);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
