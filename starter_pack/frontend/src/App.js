@@ -7,6 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import Login from "./components/Login";
+import Landing from "./components/Landing";
 import Register from "./components/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import { ToastContainer, toast } from "react-toastify";
@@ -47,7 +48,13 @@ function App() {
           <Route
             exact
             path="/"
-            render={(props) => <Redirect to="/dashboard" />}
+            render={(props) =>
+              !isAuthenticated ? (
+                <Landing {...props} />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            }
           />
           <Route
             exact
