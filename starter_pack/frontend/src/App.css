@@ -130,9 +130,33 @@ button {
   border-radius: 0.25rem;
 }
 
+/* INPUT */
+.add__controls {
+  /* width: 100%; */
+  /* background-color: red; */
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+}
+.add__controls > * {
+}
+.add__controls > input {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 500px;
+}
+.add__controls > button {
+}
+
+/* LIST */
+
 .todo_list {
   margin-top: 2rem;
+  padding: 1rem;
   width: 100%;
+  /* background-color: red; */
 }
 
 .todo_list > h1 {
@@ -144,29 +168,12 @@ button {
   margin-top: 1rem;
 }
 .todo__form > h1 {
-  text-align: center;
+  /* text-align: left; */
   margin: 1rem;
-}
-.add__controls {
-  /* width: 100%; */
-
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  /* flex-direction: column; */
-}
-.add__controls > * {
-}
-.add__controls > input {
-  padding: 0.5rem;
-  width: 80%;
-  max-width: 500px;
-}
-.add__controls > button {
 }
 
 .todo_table {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding: 1rem;
   border-collapse: collapse;

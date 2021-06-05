@@ -51,7 +51,7 @@ const ListTodos = ({ parsedData, trip, setTrip }) => {
 
   return (
     <div className="todo_list">
-      {todos.length === 0 ? (
+      {todos.length !== 0 && !todos[0].todo_id ? (
         <h1>Add some tasks to the list!</h1>
       ) : (
         <>
