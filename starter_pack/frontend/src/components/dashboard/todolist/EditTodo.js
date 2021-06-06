@@ -12,14 +12,11 @@ const EditTodo = ({ showModal, setShowModal, todo, trip, setTrip }) => {
     try {
       const body = { description };
       console.log(body);
-      const res = await fetch(
-        `http://localhost:5000/dashboard/todos/${todo.todo_id}`,
-        {
-          method: "PUT",
-          headers: myHeaders,
-          body: JSON.stringify(body),
-        }
-      );
+      await fetch(`http://localhost:5000/dashboard/todos/${todo.todo_id}`, {
+        method: "PUT",
+        headers: myHeaders,
+        body: JSON.stringify(body),
+      });
       setTrip(!trip);
     } catch (error) {
       console.error(error);
