@@ -41,6 +41,27 @@
 /*  */
 /*  */
 
+/* Landing page */
+.landing-form {
+  /* background-color: white; */
+  width: 50%;
+  color: #fefefe;
+  margin: auto;
+  margin-top: 3rem;
+  padding: 2rem;
+  border: 1px #fefefe solid;
+  border-radius: 0.5rem;
+}
+.landing-nav {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.landing-nav > a {
+  color: #fefefe;
+  text-decoration: none;
+}
+
 button {
   /* height: fit-content; */
   cursor: pointer;
@@ -49,7 +70,7 @@ button {
   padding: 0.5rem;
 }
 
-/* BEGIN */
+/* Register */
 .register__form {
   width: 50%;
   margin: 0 auto;
@@ -76,21 +97,26 @@ button {
   border-radius: 2px;
   padding: 0.5rem;
 }
-
+/* DASHBOARD */
 .dashboard__heading {
   border-bottom: #c0c0c0 solid 1px;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  padding-bottom: 1rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #fefefe;
 }
+
 .dashboard__heading > h1 {
 }
 
 .dashboard__heading > button {
   height: fit-content;
+  padding: 0.5rem;
+}
+.dashboard__logo {
+  margin: 3rem;
+  color: #fefefe;
 }
 
 /* ///////////////////  */
@@ -127,7 +153,8 @@ button {
   max-width: 500px;
   margin: 0 auto;
   border: #c0c0c0 solid 1px;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: white;
 }
 
 /* INPUT */
@@ -135,7 +162,7 @@ button {
   /* width: 100%; */
   /* background-color: red; */
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   /* flex-direction: column; */

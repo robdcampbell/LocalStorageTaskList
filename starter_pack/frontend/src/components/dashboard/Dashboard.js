@@ -37,15 +37,17 @@ const Dashboard = ({ setAuth }) => {
   }, [trip]);
 
   return (
-    <div className="dashboard">
+    <>
       <header className="dashboard__heading">
-        <h1>Welcome {name}!</h1>
+        <h3>Welcome {name}.</h3>
         <button onClick={(e) => logout(e)}>logout</button>
       </header>
-
-      <InputTodo trip={trip} setTrip={setTrip} />
-      <ListTodos parsedData={parsedData} trip={trip} setTrip={setTrip} />
-    </div>
+      <h1 className="dashboard__logo">logo here.</h1>
+      <div className="dashboard">
+        <InputTodo trip={trip} setTrip={setTrip} />
+        <ListTodos parsedData={parsedData} trip={trip} setTrip={setTrip} />
+      </div>
+    </>
   );
 };
 
